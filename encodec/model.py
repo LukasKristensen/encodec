@@ -14,9 +14,12 @@ import numpy as np
 import torch
 from torch import nn
 
-from . import quantization as qt
-from . import modules as m
-from .utils import _check_checksum, _linear_overlap_add, _get_checkpoint_url
+import encodec.quantization as qt
+# from . import quantization as qt
+import encodec.modules as m
+# from . import modules as m
+from encodec.utils import _check_checksum, _linear_overlap_add, _get_checkpoint_url
+# from .utils import _check_checksum, _linear_overlap_add, _get_checkpoint_url
 
 
 ROOT_URL = 'https://dl.fbaipublicfiles.com/encodec/v0/'
@@ -313,7 +316,7 @@ def test():
         model = models[model_name]()
         model.set_target_bandwidth(bw)
         audio_suffix = model_name.split('_')[1][:3]
-        wav, sr = torchaudio.load(f"test_{audio_suffix}.wav")
+        wav, sr = torchaudio.load(f"../test_{audio_suffix}.wav")
         wav = wav[:, :model.sample_rate * 2]
         wav_in = wav.unsqueeze(0)
         wav_dec = model(wav_in)[0]

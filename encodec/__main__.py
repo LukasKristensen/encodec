@@ -12,8 +12,10 @@ import sys
 
 import torchaudio
 
-from .compress import compress, decompress, MODELS
-from .utils import save_audio, convert_audio
+from encodec.compress import compress, decompress, MODELS
+# from .compress import compress, decompress, MODELS
+from encodec.utils import save_audio, convert_audio
+# from .utils import save_audio, convert_audio
 
 
 SUFFIX = '.ecdc'
@@ -78,7 +80,9 @@ def check_clipping(wav, args):
 
 
 def main():
+    print("test")
     args = get_parser().parse_args()
+    print("test2")
     if not args.input.exists():
         fatal(f"Input file {args.input} does not exist.")
 
